@@ -181,6 +181,19 @@ export default function Home() {
 
             {/* Visual — right on desktop, top on mobile */}
             <div className="hero-visual">
+              <div className="hero-badge-float hbf1">
+                <span className="hbf-icon">⚡</span>
+                <span className="hbf-text"><strong>350 kW</strong> Fast Charge</span>
+              </div>
+              <div className="hero-badge-float hbf2">
+                <span className="hbf-icon">🛡️</span>
+                <span className="hbf-text"><strong>5-Star</strong> Safety</span>
+              </div>
+              <div className="hero-badge-float hbf3">
+                <span className="hbf-icon">🔋</span>
+                <span className="hbf-text"><strong>98 kWh</strong> Solid-State</span>
+              </div>
+              <div className="car-watermark">Ξ</div>
               <div className="car-container">
                 <div className="car-glow" />
                 <svg className="car-svg" viewBox="0 0 700 300" fill="none">
@@ -581,10 +594,23 @@ export default function Home() {
 
         /* ── HERO ── */
         .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 64px; overflow: hidden; }
-        .hero-inner { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; padding: 3rem 4rem; }
-        .hero-inner::before { content: ''; position: absolute; top: 10%; left: -15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(252,184,19,0.06), transparent 70%); pointer-events: none; }
+        .hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(30,29,40,0.06) 1px, transparent 1px); background-size: 30px 30px; pointer-events: none; z-index: 0; }
+        .hero-inner { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; padding: 3rem 4rem; position: relative; z-index: 1; }
+        .hero-inner::before { content: ''; position: absolute; top: 10%; left: -15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(252,184,19,0.08), transparent 70%); pointer-events: none; }
         .hero-visual { position: relative; }
-        .car-container { position: relative; }
+        .car-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 22rem; font-weight: 900; color: rgba(252,184,19,0.05); line-height: 1; pointer-events: none; z-index: 0; user-select: none; font-family: serif; }
+
+        /* floating badges */
+        .hero-badge-float { position: absolute; display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: #fff; border: 1px solid rgba(252,184,19,0.35); border-radius: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 4px rgba(252,184,19,0.06); z-index: 10; white-space: nowrap; animation: hbfFloat 4s ease-in-out infinite; }
+        .hbf-icon { font-size: 1rem; line-height: 1; }
+        .hbf-text { font-size: 0.72rem; color: #4a4958; }
+        .hbf-text strong { color: #1e1d28; font-weight: 700; }
+        .hbf1 { top: 8%; right: 2%; animation-delay: 0s; }
+        .hbf2 { top: 42%; left: -4%; animation-delay: 0.9s; }
+        .hbf3 { bottom: 14%; right: 0%; animation-delay: 1.8s; }
+        @keyframes hbfFloat { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-7px); } }
+        @media (max-width: 900px) { .hero-badge-float { display: none; } }
+        .car-container { position: relative; z-index: 1; }
         .car-glow { position: absolute; bottom: 18%; left: 50%; transform: translateX(-50%); width: 55%; height: 32px; background: radial-gradient(ellipse, rgba(252,184,19,0.35), transparent 70%); filter: blur(14px); animation: carGlow 3s ease-in-out infinite; }
         @keyframes carGlow { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
         .car-svg { width: 100%; filter: drop-shadow(0 0 20px rgba(252,184,19,0.25)); animation: carFloat 4s ease-in-out infinite; }
